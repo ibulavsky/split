@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  padding: 2em 5%;
+  background: #2c3e50;
+  color: #fff;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  nav,
+  div {
+    display: table-cell;
+    vertical-align: middle;
+    height: 8em;
+  }
+
+  nav {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 720px) {
+    height: auto;
+    div,
+    div h1,
+    nav {
+      height: auto;
+      width: auto;
+      display: block;
+      text-align: center;
+    }
+  }
+}
