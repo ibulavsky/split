@@ -1,0 +1,20 @@
+.user {
+  //border: 1px solid #1DA57A;
+  //box-sizing: border-box;
+
+  &Control {
+    svg {
+      fill: #1DA57A;
+      width: 18px;
+      height: 18px;
+    }
+    margin-left: 20px;
+    //width: 20%;
+  }
+
+  &Title {
+    display: flex;
+    //justify-content: space-between;
+    width: 100%;
+  }
+}

@@ -5,6 +5,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
+const darkTheme = require('./styles/themes/dark');
 
 module.exports = {
     entry: "./index.js",
@@ -31,7 +32,28 @@ module.exports = {
                 },
             },
             {
-                test: /\.s?css$/,
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: "less-loader",
+                        options: {
+                            lessOptions: {
+                                modifyVars: {
+                                    ...darkTheme,
+                                    'primary-color': '#1DA57A',
+                                    'link-color': '#1DA57A',
+                                    'border-radius-base': '2px',
+                                },
+                                javascriptEnabled: true,
+                            },
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(s?css)$/,
                 oneOf: [
                     {
                         test: /\.module\.s?css$/,
@@ -40,15 +62,16 @@ module.exports = {
                             {
                                 loader: "css-loader",
                                 options: {
+                                    url: false,
                                     importLoaders: 1,
-                                    modules: true
+                                    modules: true,
                                 },
                             },
                             "sass-loader",
                         ],
                     },
                     {
-                        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                        use: [MiniCssExtractPlugin.loader, {loader: 'css-loader', options: {url: false}}, "sass-loader"],
                     },
                 ],
             },
